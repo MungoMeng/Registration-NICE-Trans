@@ -87,7 +87,7 @@ class Grad:
         return grad
     
 
-# This NJD loss works at PyTorch=1.10 but failed at PyTorch=1.13 for unknown reasons
+# This NJD loss works at PyTorch=1.10(cuda10.2) but failed at PyTorch=1.13 for unknown reasons
 class NJD:
     def __init__(self, Lambda=1e-5):
         self.Lambda = Lambda
