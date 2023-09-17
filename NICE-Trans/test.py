@@ -50,13 +50,11 @@ def NJD(displacement):
 
 def test(test_dir,
          test_pairs,
-         test_label,
          device, 
          load_model):
     
     # preparation
     test_pairs = np.load(test_dir+test_pairs, allow_pickle=True)
-    test_label = np.load(test_dir+test_label, allow_pickle=True)
 
     # device handling
     if 'gpu' in device:
@@ -112,10 +110,10 @@ def test(test_dir,
         warped_seg = warped_seg.detach().cpu().numpy().squeeze()
         affine_seg = affine_seg.detach().cpu().numpy().squeeze()
         
-        Dice_val = Dice(warped_seg, fixed_seg, test_label)
+        Dice_val = Dice(warped_seg, fixed_seg)
         Dice_result.append(Dice_val)
         
-        Affine_val = Dice(affine_seg, fixed_seg, test_label)
+        Affine_val = Dice(affine_seg, fixed_seg)
         Affine_result.append(Affine_val)
         
         flow = pred[1].detach().cpu().permute(0, 2, 3, 4, 1).numpy().squeeze()
@@ -148,9 +146,6 @@ if __name__ == "__main__":
     parser.add_argument("--test_pairs", type=str,
                         dest="test_pairs", default='test_pairs.npy',
                         help="testing pairs(.npy)")
-    parser.add_argument("--test_label", type=str,
-                        dest="test_label", default='label.npy',
-                        help="label for testing")
     parser.add_argument("--device", type=str, default='gpu0',
                         dest="device", help="cpu or gpuN")
     parser.add_argument("--load_model", type=str,
