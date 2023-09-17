@@ -30,7 +30,7 @@ def Dice(vol1, vol2, labels=None, nargout=1):
         dicem[idx] = top / bottom
 
     if nargout == 1:
-        return dicem
+        return np.mean(dicem)
     else:
         return (dicem, labels)
     
