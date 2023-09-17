@@ -53,7 +53,6 @@ def train(train_dir,
           train_pairs,
           valid_dir, 
           valid_pairs,
-          valid_label,
           model_dir,
           load_model,
           device,
@@ -65,7 +64,6 @@ def train(train_dir,
     # preparation
     train_pairs = np.load(train_dir+train_pairs, allow_pickle=True)
     valid_pairs = np.load(valid_dir+valid_pairs, allow_pickle=True)
-    valid_label = np.load(valid_dir+valid_label, allow_pickle=True)
 
     # prepare model folder
     if not os.path.isdir(model_dir):
@@ -166,11 +164,11 @@ def train(train_dir,
                 
             fixed_seg = fixed_seg.detach().cpu().numpy().squeeze()
             warped_seg = warped_seg.detach().cpu().numpy().squeeze()
-            Dice_val = Dice(warped_seg, fixed_seg, valid_label)
+            Dice_val = Dice(warped_seg, fixed_seg)
             valid_Dice.append(Dice_val)
             
             affine_seg = affine_seg.detach().cpu().numpy().squeeze()
-            Affine_val = Dice(affine_seg, fixed_seg, valid_label)
+            Affine_val = Dice(affine_seg, fixed_seg)
             valid_Affine.append(Affine_val)
             
             flow = pred[1].detach().cpu().permute(0, 2, 3, 4, 1).numpy().squeeze()
@@ -206,9 +204,6 @@ if __name__ == "__main__":
     parser.add_argument("--valid_pairs", type=str,
                         dest="valid_pairs", default='valid_pairs.npy',
                         help="validation pairs(.npy)")
-    parser.add_argument("--valid_label", type=str,
-                        dest="valid_label", default='label.npy',
-                        help="label for validation")
     parser.add_argument("--model_dir", type=str,
                         dest="model_dir", default='./models/',
                         help="models folder")
