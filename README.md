@@ -7,4 +7,4 @@ Recently, Non-Iterative Coarse-to-finE (NICE) registration methods have been pro
 
 ## Publication
 If this repository helps your work, please kindly cite our paper:
-* **Mingyuan Meng, Lei Bi, Michael Fulham, Dagan Feng, Jinman Kim, "Non-iterative Coarse-to-fine Transformer Networks for Joint Affine and Deformable Image Registration," International Conference on Medical Image Computing and Computer Assisted Intervention (MICCAI), 2023. [[arXiv](https://arxiv.org/abs/2307.03421)]**
+* **Mingyuan Meng, Lei Bi, Michael Fulham, Dagan Feng, Jinman Kim, "Non-iterative Coarse-to-fine Transformer Networks for Joint Affine and Deformable Image Registration," International Conference on Medical Image Computing and Computer Assisted Intervention (MICCAI), pp.750-760, 2023, doi: 10.1007/978-3-031-43999-5_71. [[Springer](https://link.springer.com/chapter/10.1007/978-3-031-43999-5_71)] [[arXiv](https://arxiv.org/abs/2307.03421)]**
